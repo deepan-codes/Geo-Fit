@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GEO-FIT</title>
+    <link rel="icon" href="icon.png" type="image/png" />
+    <link href="style.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+      defer
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css"
+    />
+    <script
+      src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"
+      defer
+    ></script>
+
+    <script src="jsmain.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="side-left">
+        <div class="logo">
+          <img src="GEO TRACKER.png" class="logo" />
+        </div>
+
+        <form class="form">
+          <div class="form-row">
+            <label class="form_label">Type</label>
+            <select
+              id="select"
+              class="form-input form-input--type"
+              name="activity"
+            >
+              <option value="Cycling">Cycling</option>
+              <option value="Running">Running</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label class="form_label">Duration</label>
+            <input
+              class="form-input form-input--duration"
+              placeholder="min"
+              name="dur"
+              required
+            />
+          </div>
+          <div class="form-row">
+            <label class="form_label">Cadence</label>
+            <input
+              class="form-input form-input--cadence"
+              name="cadence"
+              placeholder="step/min"
+              required
+            />
+          </div>
+          <div class="form-row form-row--hidden">
+            <label class="form_label">Elev Gain</label>
+            <input
+              name="elev"
+              class="form-input form-input--elevgain"
+              placeholder="meter"
+              required
+            />
+          </div>
+          <div class="form-row">
+            <label class="form_label">Date</label>
+            <input
+              type="date"
+              name="date"
+              class="form-input form-input--date"
+              placeholder="meter"
+              required
+            />
+          </div>
+          <div class="form-row dis-row">
+            <p class="form_label distance">
+              Distance : <spane class="dis-value">-- km</spane>
+            </p>
+          </div>
+          <button class="btn">OK</button>
+        </form>
+        <ul class="sub-con">
+          <!-- <li class="workout workout--running">
+            <h3 class="date-detail">Running On November 30</h3>
+            <button class="delete-btn">
+              <ion-icon name="trash-outline"></ion-icon>
+            </button>
+            <div class="workout-detail">
+              <span class="workout-icon">🏃‍♂️</span>
+              <span class="workout-value">4</span>
+              <span class="workout-unit">Km</span>
+            </div>
+            <div class="workout-detail">
+              <span class="workout-icon">🕓</span>
+              <span class="workout-value">3</span>
+              <span class="workout-unit">min</span>
+            </div>
+            <div class="workout-detail">
+              <span class="workout-icon">💨</span>
+              <span class="workout-value">200</span>
+              <span class="workout-unit">km/h</span>
+            </div>
+            <div class="workout-detail">
+              <span class="workout-icon">🦶</span>
+              <span class="workout-value">200</span>
+              <span class="workout-unit">spm</span>
+            </div>
+          </li>
+          <li class="workout workout--cycling">
+            <h3 class="date-detail">Cycling On December 02</h3>
+            <button class="delete-btn">
+              <ion-icon name="trash-outline"></ion-icon>
+            </button>
+            <div class="workout-detail">
+              <span class="workout-icon">🚵‍♀️</span>
+              <span class="workout-value">4</span>
+              <span class="workout-unit">Km</span>
+            </div>
+            <div class="workout-detail">
+              <span class="workout-icon">🕓</span>
+              <span class="workout-value">3</span>
+              <span class="workout-unit">min</span>
+            </div>
+            <div class="workout-detail">
+              <span class="workout-icon">💨</span>
+              <span class="workout-value">200</span>
+              <span class="workout-unit">km/h</span>
+            </div>
+            <div class="workout-detail">
+              <span class="workout-icon"></span>
+              <span class="workout-value">100</span>
+              <span class="workout-unit">m</span>
+            </div>
+          </li> -->
+        </ul>
+        <footer>
+          <p class="foot">GeoMap Tracker by Deepan Raj</p>
+          <p class="logo-con">
+            <a
+              class="git-logo"
+              href="https://github.com//deepan-codes"
+              target="_blank"
+              ><ion-icon name="logo-github"></ion-icon
+            ></a>
+            <a
+              class="linkedin-logo"
+              href="https://www.linkedin.com\in\deepanraj03"
+              target="_blank"
+              ><ion-icon name="logo-linkedin"></ion-icon
+            ></a>
+          </p>
+        </footer>
+      </div>
+      <div id="map"></div>
+    </div>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
