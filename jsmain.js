@@ -50,17 +50,7 @@ const markfun = (e) => {
     radius: 30,
   }).addTo(map);
   if (points.length === 2) {
-    const R = 6371;
-    const dlat = (points[1][0] - points[0][0]) * (Math.PI / 180);
-    const dlng = (points[1][1] - points[0][1]) * (Math.PI / 180);
-    const a =
-      Math.sin(dlat / 2) ** 2 +
-      Math.cos((points[0][0] * Math.PI) / 180) *
-        Math.cos((points[1][0] * Math.PI) / 180) *
-        Math.sin(dlng / 2) ** 2;
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    distance = (R * c).toFixed(2);
-    displayDis.textContent = distance + " km";
+    // displayDis.textContent = distance + " km";
     form.style.display = "grid";
     L.Routing.control({
       router: L.Routing.osrmv1({
@@ -74,7 +64,17 @@ const markfun = (e) => {
       lineOptions: {
         addWaypoints: false,
       },
-    }).addTo(map);
+    })
+      .on("routesfound", (e) => {
+        const routes = e.routes;
+        console.log(e.routes[0].name);
+        const summary = routes[0].summary;
+        const distance = (summary.totalDistance / 1000).toFixed(2);
+        console.log(summary);
+        console.log(distance);
+        displayDis.textContent = distance + " km";
+      })
+      .addTo(map);
   }
 };
 
@@ -164,10 +164,10 @@ const dateFormat = (d) => {
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  if (!distance) {
-    alert("Pick 2 points first!");
-    return;
-  }
+  // if (!distance) {
+  //   alert("Pick 2 points first!");
+  //   return;
+  // }
 
   const select_val = select.value;
   const duration_val = duration.value;
