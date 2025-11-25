@@ -8,7 +8,7 @@ const date = document.querySelector(".form-input--date");
 const subCon = document.querySelector(".sub-con");
 let points = [];
 let map;
-let distance = null;
+let distance;
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 navigator.geolocation.getCurrentPosition(
   (position) => {
@@ -69,7 +69,7 @@ const markfun = (e) => {
         const routes = e.routes;
         console.log(e.routes[0].name);
         const summary = routes[0].summary;
-        const distance = (summary.totalDistance / 1000).toFixed(2);
+        distance = (summary.totalDistance / 1000).toFixed(2);
         console.log(summary);
         console.log(distance);
         displayDis.textContent = distance + " km";
@@ -126,7 +126,7 @@ const addTask = function (task, map) {
             <div class="workout-detail">
               <span class="workout-icon">💨</span>
               <span class="workout-value">${(
-                task.dis_val /
+                Number(task.dis_val) /
                 (task.duration_val / 60)
               ).toFixed(2)}</span>
               <span class="workout-unit">km/h</span>
@@ -174,7 +174,7 @@ form.addEventListener("submit", (e) => {
   const elev_val = elevgain.value;
   const cad_val = cadence.value;
   const date_val = dateFormat(date.value);
-  const dis_val = distance;
+  const dis_val = Number(distance);
   const task = {
     select_val,
     duration_val,
